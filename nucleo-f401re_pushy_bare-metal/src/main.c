@@ -48,41 +48,44 @@
 #define GPIOA_BASE  0x40020000UL
 #define GPIOC_BASE  0x40020800UL
 
+/* Makro which wraps the memory address in a volatile pointer */
+#define _REG(mem_addr) (*(volatile uint32_t *)(mem_addr))
+
 /* Clock */
-#define RCC_AHB1ENR     RCC_BASE + 0x30
+#define RCC_AHB1ENR     _REG(RCC_BASE + 0x30)
 
 /* GPIO */
-#define GPIOA_MODER     GPIOA_BASE + 0x00
-#define GPIOA_BSRR      GPIOA_BASE + 0x18
-#define GPIOC_MODER     GPIOC_BASE + 0x00
-#define GPIOC_IDR       GPIOC_BASE + 0x10
+#define GPIOA_MODER     _REG(GPIOA_BASE + 0x00)
+#define GPIOA_BSRR      _REG(GPIOA_BASE + 0x18)
+#define GPIOC_MODER     _REG(GPIOC_BASE + 0x00)
+#define GPIOC_IDR       _REG(GPIOC_BASE + 0x10)
 
 int main(void)
 {
     /* SETUP */
     /* turn on clock on GPIOA */
-    *(volatile uint32_t *)(RCC_AHB1ENR) |= (1 << 0);
+    RCC_AHB1ENR |= (1 << 0);
     
     /* set LED (PA5) to output mode */
-    *(uint32_t *)(GPIOA_MODER)  |=  (1 << 10);
+    GPIOA_MODER  |=  (1 << 10);
 
     /* turn on clock on GPIOC */
-    *(uint32_t *)(RCC_AHB1ENR) |= (1 << 2);
+    RCC_AHB1ENR |= (1 << 2);
 
     /* set USER Button (PC13) as Input */
-    *(uint32_t *)(GPIOC_MODER) &= ~(3U << 26U);
+    GPIOC_MODER &= ~(3U << 26U);
 
     /* LOOP */
     while(1) {
 
         /* Check if the button is pressed. ! Button is low active */
-        if (!(*(volatile uint32_t*)(GPIOC_IDR) & (1<<13)))
+        if (!(GPIOC_IDR & (1<<13)))
         {
             /* set HIGH value on pin PA5 */
-            *(uint32_t *)(GPIOA_BSRR)   |=  (1 << (5));
+            GPIOA_BSRR   |=  (1 << (5));
         } else {
             /* set LOW value on pin PA5 */
-            *(uint32_t *)(GPIOA_BSRR)   |=  (1 << (5+16));
+            GPIOA_BSRR   |=  (1 << (5+16));
         }
 
     }
