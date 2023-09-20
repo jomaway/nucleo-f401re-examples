@@ -15,6 +15,10 @@
 		{
 			"name": "nucleo-f401re_pushy_CMSIS",
 			"path": "nucleo-f401re_pushy_CMSIS"
+		},
+		{
+			"name": "nucleo-f401re_pushy_bare-metal",
+			"path": "nucleo-f401re_pushy_bare-metal"
 		}
 	],
 	"settings": {
