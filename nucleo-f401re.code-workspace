@@ -19,6 +19,10 @@
 		{
 			"name": "nucleo-f401re_pushy_bare-metal",
 			"path": "nucleo-f401re_pushy_bare-metal"
+		},
+		{
+			"name": "nucleo-f401re_push-to-blink_CMSIS",
+			"path": "nucleo-f401re_push-to-blink_CMSIS"
 		}
 	],
 	"settings": {
