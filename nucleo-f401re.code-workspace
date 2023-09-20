@@ -11,6 +11,10 @@
 		{
 			"name": "nucleo-f401re_blinky_Cube-HAL",
 			"path": "nucleo-f401re_blinky_Cube-HAL"
+		},
+		{
+			"name": "nucleo-f401re_pushy_CMSIS",
+			"path": "nucleo-f401re_pushy_CMSIS"
 		}
 	],
 	"settings": {
