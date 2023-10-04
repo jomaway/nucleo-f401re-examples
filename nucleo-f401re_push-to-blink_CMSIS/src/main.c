@@ -74,6 +74,9 @@ int main(void)
             /* set LOW value on pin PA5 */
             GPIOA->BSRR |= GPIO_BSRR_BR_5;
             delay_ms(500);
+        } else {
+            /* set LOW value on pin PA5 */
+            GPIOA->BSRR |= GPIO_BSRR_BR_5;
         }
 
     }

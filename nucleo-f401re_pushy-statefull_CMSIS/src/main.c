@@ -1,7 +1,7 @@
 /*
     Nucleo-F401RE Blinky (CMSIS version)
 
-    This Program should start/stop blinking the USER LED (PA5) on the nucleo f401re Board, if the USER BUTTON (PC13) is pressed.
+    This Program should turn on/off the USER LED (PA5) on the nucleo f401re Board, if the USER BUTTON (PC13) is pressed.
 
 */
 
@@ -11,8 +11,8 @@
 // include generic header files
 #include <stm32f4xx.h>
 
-#define BLINK_OFF 0
-#define BLINK_ON 1
+#define LED_OFF 0
+#define LED_ON 1
 
 #define BTN_PRESSED 0 /* USER BUTTON was pressed */
 
@@ -47,7 +47,7 @@ int main(void)
 
     /* create some state variables */
     uint32_t btn_state = !BTN_PRESSED;
-    uint32_t blink_state = BLINK_OFF;
+    uint32_t led_state = LED_OFF;
 
     /* LOOP */
     while(1) {
@@ -59,13 +59,13 @@ int main(void)
             delay_ms(50);   // debounce button
         } else {
             if (BTN_PRESSED == btn_state) {
-                blink_state = !blink_state;
+                led_state = !led_state;
             }
             btn_state = !BTN_PRESSED;
             delay_ms(50);   // debounce button
         }
 
-        if (BLINK_ON == blink_state)
+        if (LED_ON == led_state)
         {
             /* set HIGH value on pin PA5 */
             GPIOA->BSRR |= GPIO_BSRR_BS_5;
