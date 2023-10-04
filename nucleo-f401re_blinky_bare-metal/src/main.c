@@ -42,13 +42,17 @@
 /* a very bad delay method */
 static void delay_ms(uint32_t ms)
 {
-    ms = ms * 1600;
+    /* Running at 16MHz it needs around 16000 cycles to reach 1ms.
+        Because each loop takes around 4 cycles we need to devide by 4.
+    */
+    ms = ms * 16000 / 4;
     for(;ms > 0;ms--)
     {
         // do nothing
         __asm volatile ("nop");
     }
 }
+
 
 int main(void)
 {
