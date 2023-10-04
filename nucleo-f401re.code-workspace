@@ -27,6 +27,10 @@
 		{
 			"name": "nucleo-f401re_push-to-blink_CMSIS",
 			"path": "nucleo-f401re_push-to-blink_CMSIS"
+		},
+		{
+			"name": "nucleo-f401re_push-to-blink-interrupt_CMSIS",
+			"path": "nucleo-f401re_push-to-blink-interrupt_CMSIS"
 		}
 	],
 	"settings": {
