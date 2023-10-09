@@ -31,6 +31,10 @@
 		{
 			"name": "nucleo-f401re_push-to-blink-interrupt_CMSIS",
 			"path": "nucleo-f401re_push-to-blink-interrupt_CMSIS"
+		},
+		{
+			"name": "nucleo-f401re_systick-delay_CMSIS",
+			"path": "nucleo-f401re_systick-delay_CMSIS"
 		}
 	],
 	"settings": {
