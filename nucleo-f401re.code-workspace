@@ -35,6 +35,10 @@
 		{
 			"name": "nucleo-f401re_systick-delay_CMSIS",
 			"path": "nucleo-f401re_systick-delay_CMSIS"
+		},
+		{
+			"name": "nucle-f401re_traffic-light_CMSIS",
+			"path": "nucle-f401re_traffic-light_CMSIS"
 		}
 	],
 	"settings": {
