@@ -3,7 +3,7 @@
 */
 
 // Define the microcontroller variant we use
-#define STM32401xE
+#define STM32F401xE
 
 /* Includes */
 #include <stm32f4xx.h>

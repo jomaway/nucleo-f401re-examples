@@ -6,7 +6,7 @@
 */
 
 // Define the microcontroller variant we use
-#define STM32401xE
+#define STM32F401xE
 
 // include generic header files
 #include <stm32f4xx.h>
@@ -43,7 +43,7 @@ int main(void)
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;   
 
     /* set USER Button (PC13) as Input */
-    GPIOC->MODER &= GPIO_MODER_MODER13_Msk;
+    GPIOC->MODER &= ~GPIO_MODER_MODER13_Msk;
 
     /* create some state variables */
     uint32_t btn_state = !BTN_PRESSED;
