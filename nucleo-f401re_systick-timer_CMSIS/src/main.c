@@ -12,8 +12,6 @@
 #include <sysTick.h>
 
 /* Defines */
-
-
 #define LED_PIN 5
 #define LED2_PIN 6
 #define OFF 0 // ON = 1

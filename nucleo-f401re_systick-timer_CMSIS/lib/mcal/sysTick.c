@@ -1,9 +1,5 @@
 #include "sysTick.h"
 
-
-
-
-
 void systick_init(uint16_t divider)
 {
     // This function updates the variable SystemCoreClock (uint32_t) with the System Clock Frequency (Core Clock)
@@ -23,6 +19,16 @@ void systick_set_timer(uint32_t *timer, uint16_t delay)
 bool systick_is_timer_expired(uint32_t *timer)
 {
     return msTicks > *timer;
+}
+
+void delay_ms(uint32_t ms)
+{
+    // Check if currentTicks < targetTicks. Not correct on overflow.
+    uint32_t targetTicks = msTicks + ms;
+    while(msTicks < targetTicks)
+    {
+        __asm volatile ("nop");         // do nothing
+    }
 }
 
 /* 

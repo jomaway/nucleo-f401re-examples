@@ -15,6 +15,7 @@ volatile uint32_t msTicks;  // needs to be volatile !
 void systick_init(uint16_t divider);
 void systick_set_timer(uint32_t *timer, uint16_t delay);
 bool systick_is_timer_expired(uint32_t *timer);
+void delay_ms(uint32_t ms);
 
 
 
