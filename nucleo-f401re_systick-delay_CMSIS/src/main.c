@@ -12,7 +12,7 @@
 static void delay_ms(uint32_t ms);
 
 /* Global variables */
-volatile uint32_t msTicks = 0;  // needs to be volatile !
+volatile uint32_t timeout = 0;  // needs to be volatile !
 
 
 int main()
@@ -49,8 +49,8 @@ int main()
 static void delay_ms(uint32_t ms)
 {
     // Check if currentTicks < targetTicks. Not correct on overflow.
-    uint32_t targetTicks = msTicks + ms;
-    while(msTicks < targetTicks)
+    timeout = ms;
+    while(timeout > 0)
     {
         // do nothing
         __asm volatile ("nop");
@@ -63,5 +63,5 @@ static void delay_ms(uint32_t ms)
 */
 void SysTick_Handler(void)
 {
-    ++msTicks;
+    if (timeout > 0){ timeout--; };
 }
