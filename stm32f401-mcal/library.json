@@ -1,0 +1,24 @@
+{
+    "name": "stm32f401-mcal",
+    "version": "0.0.1",
+    "description": "Abstraction Layer for STM32F401RE microcontroller for educational purpose.",
+    "keywords": "stm32f401, mcal, hal",
+    "repository":
+    {
+      "type": "git",
+      "url": ""
+    },
+    "authors":
+    [
+      {
+        "name": "Jonas Malassa",
+        "email": "jonas.malassa@rdf-nuernberg.de",
+        "maintainer": true
+      }
+    ],
+    "license": "MIT",
+    "homepage": "",
+    "dependencies": {},
+    "frameworks": "cmsis",
+    "platforms": "ststm32"
+  }
