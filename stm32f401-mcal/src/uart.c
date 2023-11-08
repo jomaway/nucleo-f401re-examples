@@ -56,9 +56,8 @@ void uart_write(USART_TypeDef *usart, uint8_t *data, uint32_t length)
 
 void uart_write_byte(USART_TypeDef *usart, uint8_t byte)
 {
-    while ((usart->SR & USART_SR_TXE) == 0);
+    while (!(usart->SR & USART_SR_TXE));
     usart->DR = byte & 0x1FF;
-    while ((usart->SR & USART_SR_TXE) == 0);
 }
 
 uint32_t uart_read(USART_TypeDef *usart, uint8_t *data, uint32_t length)
