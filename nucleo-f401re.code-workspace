@@ -65,6 +65,14 @@
 			"path": "nucleo-f401re_rotary-encoder_CMSIS"
 		},
 		{
+			"name": "nucleo-f401re_gp-timer-pwm-led_CMSIS",
+			"path": "nucleo-f401re_gp-timer-pwm-led_CMSIS"
+		},
+		{
+			"name": "nucleo-f401re_gp-timer-pwm-servo_CMSIS",
+			"path": "nucleo-f401re_gp-timer-pwm-servo_CMSIS"
+		},
+		{
 			"name": "stm32f401-mcal",
 			"path": "stm32f401-mcal"
 		}
@@ -77,7 +85,8 @@
 			"stm32f401xe.h": "c",
 			"systick.h": "c",
 			"lcd1602_4bit.h": "c",
-			"gpio.h": "c"
+			"gpio.h": "c",
+			"timer.h": "c"
 		},
 		"cSpell.enableFiletypes": [
 			"!c"

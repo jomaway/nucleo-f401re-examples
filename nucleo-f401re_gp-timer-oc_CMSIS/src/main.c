@@ -47,8 +47,10 @@ void timer3_init()
     timer_set_auto_reload_value(TIM3, TIM3_AUTO_RELOAD_VALUE);
 
     // Set Toggle mode.
-    TIM3->CCMR1 |= TIM_CCMR1_OC1M_0 | TIM_CCMR1_OC1M_1 | TIM_CCMR1_OC1PE;
+    TIM3->CCMR1 |= TIM_CCMR1_OC1M_0 | TIM_CCMR1_OC1M_1;
+    //timer_set_oc_mode(TIM3, TIM_CH1, CHN_TOGGLE);
 
     // Activate Channel 1 as output
-    TIM3->CCER |= TIM_CCER_CC1E;  
+    TIM3->CCER |= TIM_CCER_CC1E;
+    //timer_enable_oc_channel(TIM3, TIM_CH1);
 }

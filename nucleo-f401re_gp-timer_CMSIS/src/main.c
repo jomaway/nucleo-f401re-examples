@@ -9,8 +9,8 @@
 #include <gpio.h>
 
 /* Defines */
-#define TIM3_PRESCALER 15999
-#define TIM3_AUTO_RELOAD_VALUE 1000
+#define TIM3_PRESCALER 16000 - 1
+#define TIM3_AUTO_RELOAD_VALUE 1000 - 1
 #define TIM3_INTERUPT_ENABLE true
 
 /* Function declaration */
