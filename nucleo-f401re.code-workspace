@@ -73,8 +73,25 @@
 			"path": "nucleo-f401re_gp-timer-pwm-servo_CMSIS"
 		},
 		{
-			"name": "stm32f401-mcal",
-			"path": "stm32f401-mcal"
+			"path": "../stm32f401-libs/stm32f401-mcal"
+		},
+		{
+			"path": "../MCR-Leistungsnachweise/SA_2324-2_LSG"
+		},
+		{
+			"path": "../MCR-Leistungsnachweise/SA_2324-1_LSG"
+		},
+		{
+			"name": "nucleo-f401re_led-matrix",
+			"path": "nucleo-f401re_led-matrix"
+		},
+		{
+			"name": "nucleo-f401re_echo_CMSIS",
+			"path": "nucleo-f401re_echo_CMSIS"
+		},
+		{
+			"name": "nucleo-f401re_serial_control_CMSIS",
+			"path": "nucleo-f401re_serial_control_CMSIS"
 		}
 	],
 	"settings": {
@@ -86,7 +103,8 @@
 			"systick.h": "c",
 			"lcd1602_4bit.h": "c",
 			"gpio.h": "c",
-			"timer.h": "c"
+			"timer.h": "c",
+			"uart.h": "c"
 		},
 		"cSpell.enableFiletypes": [
 			"!c"
