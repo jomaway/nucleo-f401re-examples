@@ -1,6 +1,6 @@
 #include <stm32f401xe.h>
 
-#include <stdlib.h>
+#include <stdio.h>
 #include <gpio.h>
 #include <uart.h>
 
@@ -9,7 +9,7 @@ static void delay_ms(uint32_t ms);
 int main()
 {   // Enable Port A clock.
     gpio_enable_port_clock(GPIOA);
-    gpio_set_pin_mode(GPIOA, 5, OUTPUT);
+    gpio_set_mode(GPIOA, 5, OUTPUT);
     gpio_write_pin_state(GPIOA,5,HIGH);
 
     // Enable UART 
@@ -20,32 +20,33 @@ int main()
     __enable_irq();
 
     uint64_t ticks = 0;
-    uint8_t data = 0;
+    uint8_t byte = 0;
     
     while(1){
         //uart_write(USART2, "Hallo vom nucf401re. \n", 22);
-        printf("LED: %d, tick: %lu\r\n", gpio_read_pin_state(GPIOA, 5), ticks);  // Write message
+        printf("LED: %d, tick: %llu\r\n", gpio_read_pin_state(GPIOA, 5), ticks);  // Write message
         delay_ms(1000);
         //GPIOA->ODR ^= (1 << 5);  // Toggle led
         ticks++;
 
 
-        if(uart_read(USART2,(uint8_t *) &data,1))
+        if(uart_data_available(USART2))
         {
             printf("detected new data \n");
-            if (data == 'a'){
+            byte = uart_read_byte(USART2);
+            if (byte == 'a'){
                 gpio_write_pin_state(GPIOA,5,HIGH);
             } 
-            else if (data == 'b')
+            else if (byte == 'b')
             {
                 gpio_write_pin_state(GPIOA,5,LOW);
             }
             else
             {
-                uart_write_byte(USART2, ++data);
+                uart_write_byte(USART2, ++byte);
             }
         }
-        printf("Data is: %d \n", data); 
+        printf("Data is: %d \n", byte); 
     }
 }
 

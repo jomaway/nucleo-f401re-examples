@@ -53,4 +53,7 @@ dkms.conf
 
 # Platformio
 **/.pio
+
+# VSCode
 **/.vscode
+*.code-workspace
