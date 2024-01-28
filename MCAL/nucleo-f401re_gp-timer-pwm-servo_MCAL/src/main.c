@@ -17,6 +17,7 @@
 
 #define RE_CLK_PORT GPIOA
 #define RE_CLK_PIN 8
+#define RE_CLK_EXTI_LINE RE_CLK_PIN
 #define RE_DT_PORT GPIOA
 #define RE_DT_PIN 9
 
@@ -54,10 +55,10 @@ void encoder_setup()
     gpio_set_mode(RE_DT_PORT, RE_DT_PIN, INPUT);
 
     // Set CLK as exti
-    exti_enable_syscfg_clock(RE_CLK_PORT);
-    exti_set_irq_input_source(RE_CLK_PIN, RE_CLK_PORT);
-    exti_set_trigger_edge(RE_CLK_PIN, FALLING_EDGE);
-    exti_enable_irq(RE_CLK_PIN);
+    exti_enable_syscfg_clock();
+    exti_set_source(RE_CLK_EXTI_LINE, RE_CLK_PORT);
+    exti_set_trigger_edge(RE_CLK_EXTI_LINE, EXTI_FALLING_EDGE);
+    exti_enable_irq(RE_CLK_EXTI_LINE);
     NVIC_EnableIRQ(EXTI9_5_IRQn);
     NVIC_SetPriority(EXTI9_5_IRQn, 0);
 }

@@ -45,16 +45,16 @@ void exti_setup()
     exti_enable_syscfg_clock();
 
     /* connect exti lines to ports */
-    exti_set_irq_input_source(EXTI_PIN6, GPIOA); // Set EXTI6 line to Port A
-    exti_set_irq_input_source(EXTI_PIN9, GPIOA); // Set EXTI9 line to Port B
+    exti_set_source(EXTI_LINE_6, GPIOA); // Set EXTI6 line to Port A
+    exti_set_source(EXTI_LINE_9, GPIOA); // Set EXTI9 line to Port B
 
     /* Enable EXTI line 6 (PA6) - rotary A */
-    exti_enable_irq(EXTI_PIN6);                     // Enable EXTI interrupt
-    exti_set_trigger_edge(EXTI_PIN6, FALLING_EDGE); // Enable falling edge trigger
+    exti_enable_irq(EXTI_LINE_6);                     // Enable EXTI interrupt
+    exti_set_trigger_edge(EXTI_LINE_6, EXTI_FALLING_EDGE); // Enable falling edge trigger
 
     /* Enable EXTI line 9 (PA9) - rotary push button */
-    exti_enable_irq(EXTI_PIN9);                    // Enable EXTI interrupt
-    exti_set_trigger_edge(EXTI_PIN9, RISING_EDGE); // Enable rising edge trigger
+    exti_enable_irq(EXTI_LINE_9);                    // Enable EXTI interrupt
+    exti_set_trigger_edge(EXTI_LINE_9, EXTI_RISING_EDGE); // Enable rising edge trigger
 
     /* Enable and set the EXTI interrupt in NVIC */
     NVIC_EnableIRQ(EXTI9_5_IRQn);
@@ -75,7 +75,7 @@ int main()
 void EXTI9_5_IRQHandler(void)
 {
     /* check if the EXTI Line 6 interrupt flag is set (RE_PIN_A rising edge) */
-    if (exti_is_irq_pending(EXTI_PIN6)) // RE_PIN_A triggered
+    if (exti_is_irq_pending(EXTI_LINE_6)) // RE_PIN_A triggered
     {
         __disable_irq();
         if (gpio_read_pin_state(RE_PORT, RE_PIN_B)) // RE_PIN_B state is HIGH -> clockwise rotation
@@ -88,15 +88,15 @@ void EXTI9_5_IRQHandler(void)
         }
 
         // Clear the interrupt flag
-        exti_reset_pending_bit(EXTI_PIN6);
+        exti_reset_pending_bit(EXTI_LINE_6);
         __enable_irq();
     }
-    else if (exti_is_irq_pending(EXTI_PIN9)) // ROTARY PUSH BUTTON trigger
+    else if (exti_is_irq_pending(EXTI_LINE_9)) // ROTARY PUSH BUTTON trigger
     {
         // Toggle LED state
         led_state = !led_state;
 
         // Clear the interrupt flag
-        exti_reset_pending_bit(EXTI_PIN9);
+        exti_reset_pending_bit(EXTI_LINE_9);
     }
 }
