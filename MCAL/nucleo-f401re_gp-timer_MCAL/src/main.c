@@ -25,7 +25,7 @@ void gpio_setup()
 void timer_setup()
 {
     // Enable clock for TIM3 on APB1 Bus
-    timer_enable_bus_clock(TIM3);
+    timer_enable_clock(TIM3);
 
     // Set Prescaler for TIM3
     timer_set_prescaler(TIM3, TIM3_PRESCALER);
@@ -37,7 +37,7 @@ void timer_setup()
     timer_enable(TIM3);
 
     // Enable timer interrupt (TIM3_IRQHandler)
-    timer_set_interrupt_active(TIM3);
+    timer_enable_irq(TIM3);
     NVIC_EnableIRQ(TIM3_IRQn);
 }
 
@@ -61,11 +61,11 @@ int main()
 void TIM3_IRQHandler(void)
 {
     // check the overflow flag, otherwise the toggle get called twice.
-    if (timer_is_overflow(TIM3))
+    if (timer_is_update_event(TIM3))
     {
         gpio_toggle_pin_state(LED_PORT, LED_PIN);
     }
 
     // reset overflow flag
-    timer_reset_uif(TIM3);
+    timer_reset_update_event(TIM3);
 }

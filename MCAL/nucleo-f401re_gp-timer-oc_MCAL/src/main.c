@@ -27,7 +27,7 @@ void gpio_setup()
 void timer_setup()
 {
     // Enable clock for TIM3 on APB1 Bus
-    timer_enable_bus_clock(TIM3);
+    timer_enable_clock(TIM3);
 
     // Set Prescaler for TIM3
     timer_set_prescaler(TIM3, TIM3_PRESCALER);

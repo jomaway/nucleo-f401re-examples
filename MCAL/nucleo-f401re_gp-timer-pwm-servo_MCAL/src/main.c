@@ -70,7 +70,7 @@ void servo_setup()
     gpio_set_af(SERVO_PORT, SERVO_PIN, AF2);       // AF-Modus: AF2 -> TIM3_CH1  (Table 9. Alternate function mapping)
 
     // Enable clock for TIM3 on APB1 Bus
-    timer_enable_bus_clock(TIM3);
+    timer_enable_clock(TIM3);
 
     // Set Prescaler for TIM3
     timer_set_prescaler(TIM3, TIM3_PRESCALER);
