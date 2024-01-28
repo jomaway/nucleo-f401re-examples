@@ -57,9 +57,9 @@ void gpio_setup()
     gpio_set_mode(BTN_PORT, BTN_PIN, INPUT);
 
     // Set PA_6 as TIMER 3 Channel 1 -> AF2
-    gpio_enable_port_clock(SERVO_PORT);
-    gpio_set_mode(SERVO_PORT, SERVO_PIN, ALTFUNC); // Set PA6 to alternate function
-    gpio_set_af(SERVO_PORT, SERVO_PIN, AF2);       // AF-Modus: AF2 -> TIM3_CH1  (Table 9. Alternate function mapping)
+    gpio_enable_port_clock(LED_PORT);
+    gpio_set_mode(LED_PORT, LED_PIN, ALTFUNC); // Set PA6 to alternate function
+    gpio_set_af(LED_PORT, LED_PIN, AF2);       // AF-Modus: AF2 -> TIM3_CH1  (Table 9. Alternate function mapping)
 }
 
 void timer_setup()

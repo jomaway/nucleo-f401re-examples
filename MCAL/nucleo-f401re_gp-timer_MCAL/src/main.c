@@ -18,8 +18,8 @@
 
 void gpio_setup()
 {
-    gpio_enable_port_clock(SERVO_PORT);
-    gpio_set_mode(SERVO_PORT, SERVO_PIN, OUTPUT);
+    gpio_enable_port_clock(LED_PORT);
+    gpio_set_mode(LED_PORT, LED_PIN, OUTPUT);
 }
 
 void timer_setup()
@@ -63,7 +63,7 @@ void TIM3_IRQHandler(void)
     // check the overflow flag, otherwise the toggle get called twice.
     if (timer_is_overflow(TIM3))
     {
-        gpio_toggle_pin_state(SERVO_PORT, SERVO_PIN);
+        gpio_toggle_pin_state(LED_PORT, LED_PIN);
     }
 
     // reset overflow flag

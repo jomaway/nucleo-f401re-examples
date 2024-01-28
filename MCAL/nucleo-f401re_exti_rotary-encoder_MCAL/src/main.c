@@ -25,7 +25,7 @@ void gpio_setup()
     gpio_enable_port_clock(GPIOA);
 
     /* set PA5 to output mode */
-    gpio_set_mode(SERVO_PORT, SERVO_PIN, OUTPUT);
+    gpio_set_mode(LED_PORT, LED_PIN, OUTPUT);
 
     // ROTARY ENCODER SETUP
     /* set PA6 (RE_PIN_A) as INPUT */
@@ -68,7 +68,7 @@ int main()
 
     while (1)
     {
-        gpio_write_pin_state(SERVO_PORT, SERVO_PIN, led_state);
+        gpio_write_pin_state(LED_PORT, LED_PIN, led_state);
     }
 }
 
