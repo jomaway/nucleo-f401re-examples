@@ -12,16 +12,16 @@
 #include <delay.h>
 
 #ifndef LCD1602_E_Port
-    #define LCD1602_E_Port		GPIOB
+    #define LCD1602_E_Port		GPIOA
 #endif
 #ifndef LCD1602_E_Pin
-	#define LCD1602_E_Pin		PIN_3
+	#define LCD1602_E_Pin		8
 #endif
 #ifndef LCD1602_RS_Port
-	#define LCD1602_RS_Port		GPIOB
+	#define LCD1602_RS_Port		GPIOA
 #endif
 #ifndef LCD1602_RS_Pin
-	#define LCD1602_RS_Pin		4
+	#define LCD1602_RS_Pin		9
 #endif
 
 #define LCD1602_D4_Port		GPIOA
