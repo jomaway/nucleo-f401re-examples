@@ -6,6 +6,7 @@
 #include <delay.h>
 #include <stdio.h>
 
+// impl _write for printf
 int _write(int fd, char *ptr, int len)
 {
     (void)fd;
@@ -17,12 +18,16 @@ int _write(int fd, char *ptr, int len)
     return -1;
 }
 
+// Defines for the sn74hc595n
+// data pin
 #define DS_PORT GPIOA
 #define DS_PIN 9
-#define STCP_PORT GPIOA
-#define STCP_PIN 8
-#define SHCP_PORT GPIOA
-#define SHCP_PIN 5
+// clock pin for shift the next bit
+#define CLOCK_PORT GPIOA
+#define CLOCK_PIN 8
+// Latch pin for storing the data
+#define LATCH_PORT GPIOA
+#define LATCH_PIN 5
 
 #define delay_time 500
 
@@ -69,8 +74,8 @@ void gpio_setup()
 {
     gpio_enable_port_clock(DS_PORT);
     gpio_set_mode(DS_PORT, DS_PIN, OUTPUT);
-    gpio_set_mode(SHCP_PORT, SHCP_PIN, OUTPUT);
-    gpio_set_mode(STCP_PORT, STCP_PIN, OUTPUT);
+    gpio_set_mode(CLOCK_PORT, CLOCK_PIN, OUTPUT);
+    gpio_set_mode(LATCH_PORT, LATCH_PIN, OUTPUT);
 }
 
 void shift_out_data(uint8_t data)
@@ -80,23 +85,24 @@ void shift_out_data(uint8_t data)
         uint8_t value = data & (1 << i);
 
         gpio_write_pin_state(DS_PORT, DS_PIN, value);
+
         // pull shift pin high
-        gpio_write_pin_state(SHCP_PORT, SHCP_PIN, HIGH);
+        gpio_write_pin_state(CLOCK_PORT, CLOCK_PIN, HIGH);
         // pull shift pin low
-        gpio_write_pin_state(SHCP_PORT, SHCP_PIN, LOW);
+        gpio_write_pin_state(CLOCK_PORT, CLOCK_PIN, LOW);
     }
 }
 
 void store_data(uint8_t data)
 {
     // pull storage pin low
-    gpio_write_pin_state(STCP_PORT, STCP_PIN, LOW);
+    gpio_write_pin_state(LATCH_PORT, LATCH_PIN, LOW);
 
     // shift data into the shift register
     shift_out_data(data);
 
     // pull storage pin high to
-    gpio_write_pin_state(STCP_PORT, STCP_PIN, HIGH);
+    gpio_write_pin_state(LATCH_PORT, LATCH_PIN, HIGH);
 }
 
 void USART2_IRQHandler()
